@@ -13,14 +13,6 @@ const dreams = [
   "Wash the dishes"
 ];
 
-var listTodo = [
-  { title: "Đi chợ" },
-  { title: "Nấu cơm" },
-  { title: "Rửa bát" },
-  { title: "Học code tại codersX" },
-  { title: "Ngắm gái xinh Huflit" }
-]
-
 app.set('view engine', 'pug')
 app.set('views', './views')
 
@@ -28,28 +20,15 @@ app.set('views', './views')
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
+
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
 
+// 
 app.get("/todos", (request, response) => {
-  response.render('todos.pug', {
-    todos: listTodo
-  })
-});
-
-app.get("/todos/search", (request, response) => {
-  var valueSearch = '';
-  var q = request.query.q;
-  valueSearch = q;
-  var matchedTodos = listTodo.filter(item => {
-    return item.title.toLowerCase().indexOf(q.toLowerCase()) !== -1;
-  })
-  response.render('todos.pug', {
-    todos: matchedTodos,
-    value: valueSearch
-  })
+  response.render('todos.pug')
 });
 
 // send the default array of dreams to the webpage
